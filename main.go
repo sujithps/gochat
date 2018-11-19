@@ -18,9 +18,9 @@ const helpStr = `Commands
 4. /all :- Send message to all the users [TODO]`
 
 var (
-	name = flag.String("name", "", "The name you want to chat as")
-	port = flag.Int("port", 12345, "Port that your server will run on.")
-	host = flag.String("host", "", "Host IP that your server is running on.")
+	name      = flag.String("name", "", "The name you want to chat as")
+	port      = flag.Int("port", 12345, "Port that your server will run on.")
+	host      = flag.String("host", "", "Host IP that your server is running on.")
 	stdReader = bufio.NewReader(os.Stdin)
 )
 
@@ -28,6 +28,8 @@ var MyHandle api.Handle
 var USERS = PeerHandleMapSync{
 	PeerHandleMap: make(map[string]api.Handle),
 }
+
+//exit channel is not used
 
 func main() {
 	// Parse flags for host, port and name
@@ -50,14 +52,14 @@ func main() {
 	// exit channel is a buffered channel for 5 exit patterns
 	exit := make(chan bool, 1)
 
-	// Listener for is-alive broadcasts from other hosts. Listening on 33333
-	go registerUser(&wg)
-
 	// Broadcast for is-alive on 33333 with own UserHandle.
-	go isAlive(&wg, exit)
+	go broadcastOwnHandle(&wg, exit)
+
+	// Listener for is-alive broadcasts from other hosts. Listening on 33333
+	go listenAndRegisterUsers(&wg)
 
 	// gRPC listener
-	go listen(&wg)
+	go startServer(&wg)
 
 	for {
 		fmt.Printf("> ")
@@ -90,13 +92,13 @@ func parseAndExecInput(input string) {
 		os.Exit(1)
 		break
 	case cmd[0] == '@':
-		message := "hi" // default
+		message := "hi"
 		if len(tokens) > 1 {
 			message = tokens[1]
 		}
-
+		userName := cmd[1:]
 		// send message to particular user
-		if h, ok := USERS.Get(cmd[1:]); ok {
+		if h, ok := USERS.Get(userName); ok {
 			sendChat(h, message)
 		} else {
 			fmt.Println("No user: ", cmd)
