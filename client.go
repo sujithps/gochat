@@ -1,12 +1,12 @@
 package main
 
 import (
+	"context"
 	"fmt"
+	"github.com/gautamrege/gochat/api"
 	"google.golang.org/grpc"
 	"log"
 	"time"
-	"github.com/gautamrege/gochat/api"
-	"context"
 )
 
 func sendChat(receiverHandle api.Handle, message string) {
@@ -36,4 +36,3 @@ func sendChat(receiverHandle api.Handle, message string) {
 	}
 	return
 }
-
