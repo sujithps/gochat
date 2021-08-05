@@ -21,3 +21,14 @@ There are 9 steps which are marked in the code `TODO-WORKSHOP-STEP-?` which need
 
 Fork and submit PR
 
+
+## How to run
+
+1. Install docker and docker-compose (https://docs.docker.com/docker-for-mac/install/ )
+2. Clone the repo in the $GOPATH/src/ directory.
+3. Run `docker-compose up --build` in one terminal
+4. Open another terminal and run `docker-compose exec gochat1 bash`
+5. Type `gochat --name user1 --host 10.5.0.5 --port 3100`
+6. Open another terminal and run `docker-compose exec gochat2 bash`
+7. Type `gochat --name user2 --host 10.5.0.6 --port 3100`
+8. Try commands like `/users` , `@user1 hi`

@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  gochat1:
+    build: .
+    image: gochat:core
+    ports:
+      - ":3100"
+    tty: true
+    stdin_open: true
+    networks:
+      chatvpc:
+        ipv4_address: 10.5.0.5
+
+  gochat2:
+    image: gochat:core
+    ports:
+      - ":3100"
+    tty: true
+    stdin_open: true
+    depends_on:
+      - gochat1
+    networks:
+      chatvpc:
+        ipv4_address: 10.5.0.6
+
+networks:
+  chatvpc:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.10/16
+          gateway: 10.5.0.1
