@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/gautamrege/gochat/api"
+	"gochat/api"
 )
 
 // Ensure that users are added / removed using a mutex!

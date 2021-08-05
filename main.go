@@ -8,7 +8,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/gautamrege/gochat/api"
+	"gochat/api"
 )
 
 const helpStr = `Commands

@@ -8,11 +8,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/gautamrege/gochat/api"
+	"gochat/api"
 )
 
 //Edit: Local Network broadcast address
-const broadcastAddress = "192.168.1.255:33333"
+const broadcastAddress = "10.5.255.255:33333"
 
 // Broadcast Listener , Listens on 33333 and updates the Global Users list
 func listenAndRegisterUsers(wg *sync.WaitGroup) {

@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/gautamrege/gochat/api"
+	"gochat/api"
 	"google.golang.org/grpc"
 	"log"
 	"time"

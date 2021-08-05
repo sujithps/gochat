@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/gautamrege/gochat/api"
+	"gochat/api"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"log"
