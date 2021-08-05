@@ -32,3 +32,6 @@ Fork and submit PR
 6. Open another terminal and run `docker-compose exec gochat2 bash`
 7. Type `gochat --name user2 --host 10.5.0.6 --port 3100`
 8. Try commands like `/users` , `@user1 hi`
+
+
+Sample execution : https://www.loom.com/share/d931da76f6054e678ce64f87363f4358 
