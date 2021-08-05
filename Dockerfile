@@ -3,7 +3,7 @@ COPY go.mod go.sum /go/src/github.com/sujithps/gochat/
 WORKDIR /go/src/github.com/sujithps/gochat
 RUN go mod download
 COPY . /go/src/github.com/sujithps/gochat
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o build/gochat github.com/sujithps/gochat
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o build/gochat gochat
 
 FROM alpine
 RUN apk add --no-cache ca-certificates && update-ca-certificates
